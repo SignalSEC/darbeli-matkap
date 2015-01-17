@@ -7,10 +7,10 @@ DarbeliMatkap is written in Python by [SignalSEC](http://www.signalsec.com/) res
 Usage: ./darbelimatkap.py -n -i sample.pcap [-byteflip/-smash] [-d 0.2] [-ip 127.0.0.1] [-port 1234]
 
 Arguments:  
-            -n        : fuzzing mode
-            -i        : sample pcap file
-            -byteflip : byte flip fuzzing method
-            -smash    : smash buffer fuzzing method
-            -d        : delay time
-            -ip       : target IP
-            -port     : destination port
+	-n        : fuzzing mod
+	-i        : sample pcap file
+	-byteflip : byte flip fuzzing method
+	-smash    : smash buffer fuzzing method
+	-d        : delay time
+	-ip       : target IP
+	-port     : destination port
