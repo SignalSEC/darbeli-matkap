@@ -77,7 +77,7 @@ def b_Darbeleme(pcap_dosya):
 	
 	for paketic in paketler:
 		paket_liste = []
-		if paketic.haslayer(TCP):
+		if paketic.haslayer(TCP) and paketic.dport == int(args.port):
 		    for icerik in str(paketic.getlayer(TCP).payload):
 		    	if len(icerik) != 0:
 		        	paket_liste.append(icerik)
