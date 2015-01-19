@@ -8,7 +8,7 @@ from array import *
 from random import choice
 from time import sleep
 
-#fucking ipv6 warnings..
+#ipv6 warnings..
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
 
 try: from scapy.all import *
@@ -68,7 +68,7 @@ def b_Insert(d_paket):
 		for sayi in range(len(SMASH_INT)):
 			for i in range(len(d_paket)):
 				y_liste    = d_paket[:]
-				y_liste[i] = INSERT_VALUES[harf] * SMASH_INT[sayi]
+				y_liste.insert(i,INSERT_VALUES[harf] * SMASH_INT[sayi])
 				donen_liste.append(y_liste)
 	return donen_liste
 
@@ -77,8 +77,7 @@ def b_Darbeleme(pcap_dosya):
 	
 	for paketic in paketler:
 		paket_liste = []
-		#print paketic.dport
-		if paketic.haslayer(TCP) and paketic.dport == int(args.port):
+		if paketic.haslayer(TCP):
 		    for icerik in str(paketic.getlayer(TCP).payload):
 		    	if len(icerik) != 0:
 		        	paket_liste.append(icerik)
@@ -88,15 +87,15 @@ def b_Darbeleme(pcap_dosya):
 		    	if len(icerik) != 0:	
 		        	paket_liste.append(icerik)	
 
-		#Paket hex formatında ikili olarak bir listeye çeviriliyor
+		#if len(paket_list == 0)
+		#XXX
+
 		data = " ".join("{:02x}".format(ord(sla)) for sla in paket_liste).split()
 
 		if args.byteflip == True:
-			#Her byteın ayrı ayrı değiştirildiği bir liste dönüyor geriye.
 			t_degisen = b_Flip(data)
 
 		elif args.smash == True:
-			#Her byteın smash değeri ile değiştirildiği bir liste dönüyor.
 			t_degisen = b_Insert(data)
 		
 		else:
